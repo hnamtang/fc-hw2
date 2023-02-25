@@ -97,7 +97,7 @@ D_lat(:,:,3)=[0 1 0 0;0 0 0 1]; % D boolean matrix for spiral eigenvector
 vd=[0 1;1 0;0 1]'; % desired lateral-directional eigenvectors (shortened)
 
 % MIL-F-8785C (only Dutch roll, other modes already satisfactory)
-[wn_lat,zeta_lat]=damp(Glat);
+[wn_lat,~]=damp(Glat);
 zeta_dr=.9; w_dr=wn_lat(2)/2;
 eval_dr=-zeta_dr*w_dr+1j*w_dr*sqrt(1-zeta_dr^2);
 
