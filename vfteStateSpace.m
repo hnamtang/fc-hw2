@@ -84,3 +84,22 @@ OutputNames = {'\delta q';'\delta \alpha';'\delta V_A';'\delta \Theta';...
 
 G = ss(A,B,C,D,'InputName',InputNames,'StateName',StateNames,...
       'OutputName',OutputNames);
+
+T_Hbaro = 1;
+T_H = 0.5;
+T_q = 0.05;
+
+Hbaro_LP = tf(1,[T_Hbaro,1]);
+Hbaro_HP = tf([1,0],[T_H,1]);
+Hq_LP = tf(1,[T_q,1]);
+% To the z domain
+Hbaro_LP_d = c2d(Hbaro_LP,T_Hbaro);
+Hbaro_HP_d = c2d(Hbaro_HP,T_H);
+Hq_LP_d = c2d(Hq_LP,T_q);
+
+%% Observer
+rank(obsv(Along,Clong))
+Blong_obsv = Blong(1:4,1);
+Clong_obsv = Clong(1:4,:);
+L = 1;
+
